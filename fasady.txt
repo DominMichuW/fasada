@@ -1,0 +1,112 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp10
+{
+    public interface IRabatable
+    {
+        void Rabat();
+    }
+    public interface IWysy³ka
+    {
+        void Wysy³ka();
+    }
+    class Towar
+    {
+        public static void ogl()
+        {
+            Rodzaj rodzaj = new Rodzaj();
+            Pó³ka pó³ka = new Pó³ka();
+            Seria seria = new Seria();
+            Dodatki dodatki = new Dodatki();
+            Magazynier magazynier = new Magazynier();
+            rodzaj.rodzaj();
+            pó³ka.pó³ka();
+            seria.seria();
+            magazynier.magazynier();
+            dodatki.Rabat();
+            dodatki.Wysy³ka();
+
+        }
+      
+    }
+    class Rodzaj
+    {
+        public void rodzaj()
+        {
+            Random random = new Random();
+            int a = random.Next(0, 101);
+            if (a > 0 && a < 40)
+            { Console.WriteLine("rodzaj standardowy"); }
+            else if (a > 39 && a < 70) { Console.WriteLine("Towar premium"); }
+            else Console.WriteLine("Towar ekskluzywny");
+        }
+    }
+    class Pó³ka
+    {
+        public void pó³ka()
+        {
+            Random random = new Random();
+            int a = random.Next(1, 101);
+            Console.WriteLine("Produkt le¿a³ na {0} pó³ce",a);
+        }
+    }
+    class Seria
+    { 
+        public void seria()
+        {
+            Random random = new Random();
+            int a=random.Next(1,10);
+            Console.WriteLine("Produkt {0} serii",a);
+        }
+      
+
+    }
+    class Magazynier
+    {
+        public void magazynier()
+        {
+            string[] imionaMeskie = { "Adam", "Piotr", "Jan", "Andrzej", "Marek", "Tomasz", "Krzysztof", "Marcin", "Robert", "Mateusz", "Bartosz", "Kamil", "Pawe³", "Micha³", "Grzegorz", "£ukasz", "Szymon", "Jacek", "Rafa³", "Dominik" };
+
+            Random losowaLiczba = new Random();
+            int losowyIndex = losowaLiczba.Next(imionaMeskie.Length);
+
+            string losoweImie = imionaMeskie[losowyIndex];
+
+            Console.WriteLine("Magazynier {0} spakowa³ dla Ciebie zamówienie ",losoweImie);
+        }
+
+    }
+    class Dodatki: IRabatable, IWysy³ka
+    {
+        public void Rabat()
+        {
+            Random r = new Random();
+            int n = r.Next(0, 51);
+            Console.WriteLine("Otrzyma³eœ {0}% rabatu", n);
+        }
+        public void Wysy³ka()
+        {
+            Random r = new Random();
+            int a = r.Next(1, 101);
+            if (a < 10) Console.WriteLine("Wysy³ka do paczkomatu");
+            else
+            {
+                Console.WriteLine("Wysy³ka kurierem");
+            }
+        }
+    }
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+           
+            Towar.ogl();
+            Console.ReadKey();
+        }
+    }
+}
